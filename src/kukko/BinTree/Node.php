@@ -4,11 +4,13 @@
 	class Node{
 		private $key;
 		private $value;
+		private $depth;
 		private $left;
 		private $right;
-		public function __construct($key, $value){
+		public function __construct($key, $value, $depth=0){
 			$this->key=$key;
 			$this->value=$value;
+			$this->depth=$depth;
 		}
 		public function set($key, $value){
 			switch ($key<=>$this->key){
@@ -17,7 +19,7 @@
 						$this->left->set($key, $value);
 					}
 					else{
-						$this->left=new Node($key, $value);
+						$this->left=new Node($key, $value, $this->depth+1);
 					}
 					break;
 				case 0:
@@ -28,7 +30,7 @@
 						$this->right->set($key, $value);
 					}
 					else{
-						$this->right=new Node($key, $value);
+						$this->right=new Node($key, $value, $this->depth+1);
 					}
 					break;
 			}
@@ -54,6 +56,27 @@
 						return null;
 					}
 					break;
+			}
+		}
+		public function getValue(){
+			return $this->value;
+		}
+		public function getNodesFromDepth($depth){
+			if ($this->depth+1==$depth){
+				$output=[];
+				if (isset($this->left)){
+					$output[]=$this->left->getValue();
+				}
+				if (isset($this->right)){
+					$output[]=$this->right->getValue();
+				}
+				return $output;
+			}
+			else if($this->depth+1<$depth){
+				return array_merge($this->left->getNodesFromDepth($depth), $this->right->getNodesFromDepth($depth));
+			}
+			else{
+				return [];
 			}
 		}
 	}
