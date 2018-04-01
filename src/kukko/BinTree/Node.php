@@ -79,4 +79,7 @@
 				return [];
 			}
 		}
+		public function levelIsFullyFilled($depth){
+			return count($this->getNodesFromDepth($depth))==pow(2, $depth);
+		}
 	}
