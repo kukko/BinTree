@@ -1,0 +1,25 @@
+{
+	"name":"kukko/bintree",
+	"description":"Binary tree implementation.",
+	"license":"MIT",
+	"keywords":[
+		"HTML"
+	],
+	"homepage":"https://github.com/kukko/bintree",
+	"authors":[
+		{
+			"name":"kukko"
+		}
+	],
+	"autoload":{
+		"psr-0":{
+			"kukko\\BinTree\\":"src"
+		}
+	},
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/kukko/bintree"
+		}
+	]
+}
